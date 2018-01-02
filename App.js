@@ -20,7 +20,7 @@ import {
 class SearchPage extends Component<{}> {
   render() {
     return(
-    <View style>
+    <View>
     <Text>Current Scene: { this.props.title }</Text>
     <TouchableHighlight>
       <Text>Tap me to load the next scene</Text>

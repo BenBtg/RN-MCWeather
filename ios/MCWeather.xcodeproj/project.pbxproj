@@ -677,7 +677,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 5TNWH5JMNK;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -1194,7 +1194,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 5TNWH5JMNK;
@@ -1206,8 +1206,8 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = MCWeather;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "37f129cf-b72f-40e6-a9e9-0ff9330d228b";
+				PROVISIONING_PROFILE_SPECIFIER = "MCWeather Dev Profile";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1217,7 +1217,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5TNWH5JMNK;
 				INFOPLIST_FILE = MCWeather/Info.plist;
@@ -1228,8 +1228,8 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = MCWeather;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "37f129cf-b72f-40e6-a9e9-0ff9330d228b";
+				PROVISIONING_PROFILE_SPECIFIER = "MCWeather Dev Profile";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
