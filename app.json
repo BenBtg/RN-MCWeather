@@ -1,4 +1,5 @@
 {
-  "name": "MCWeather",
-  "displayName": "MCWeather"
+  "expo": {
+    "sdkVersion": "23.0.0"
+  }
 }
