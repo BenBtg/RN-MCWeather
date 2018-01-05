@@ -9,9 +9,9 @@ class Thermometer extends Component {
     render() {
       return (
         
-          <ImageBackground style={styles.face} source={require('./img/celsius.png')}>
+          <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
           
-            <Image style={styles.needle} source={require('./img/needle.png')} />
+            <Image style={styles.needle} source={require('./img/needle.png')} resizeMode="contain" />
          
         </ImageBackground>
       );
@@ -19,12 +19,6 @@ class Thermometer extends Component {
   }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:'red',
-    margin: 50,
-
-  },
   face:{
     flex: 1,
     width: undefined,

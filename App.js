@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import Thermometer from './Thermometer';
 
 class WeatherTextBlock extends Component {
@@ -20,21 +20,19 @@ class WeatherTextBlock extends Component {
 export default class MCWeatherApp extends React.Component {
   render() {
     let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      uri: 'https://i.pinimg.com/736x/24/69/87/2469874f2b5f78d5e6e812f31fc3c4bf--wallpaper-for-iphone-mobile-wallpaper.jpg'
     };
 
     return (
-        <View style={styles.container}>
+        <ImageBackground style={styles.container} source={pic}>
+          {/* <Image style={styles.backgroundImage} source={pic} resizeMode="cover"/> */}
           <Text>Shake your phone to open the developer menu.</Text>
-
-          <View style={{ width:380, height:380, backgroundColor:'green'}}>
+          <View style={{ height:350, margin:20 }}>
             <Thermometer/>
           </View>
-
           <WeatherTextBlock style={{flex:1}} description='Overcast clouds' temp="3" high="5" low="2"/> 
-          <Text style={{flex:1}} >Shake your phone to open the developer menu.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
-        </View>
+          
+        </ImageBackground>
     );
   }
 }
@@ -42,9 +40,18 @@ export default class MCWeatherApp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#99f',
-    marginTop: 20,
-    
+    backgroundColor: 'transparent',
+    width: null,
+    height: null,
+  },
+  backgroundImage:{
+    flex:1,
+    position: 'absolute',
+
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
   regular:{
     color: 'white',
