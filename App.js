@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import Thermometer from './Thermometer';
 
-class Greeting extends Component {
+class WeatherTextBlock extends Component {
   render() {
     return (
-      <Text Style>Hello {this.props.name}!</Text>
+      <View style={{backgroundColor:'blue'}}>
+        <Text style={styles.bodytext}>{this.props.description}</Text>
+        <Text style={[styles.bodytext, styles.bigTemp]}>{this.props.temp} °C</Text>
+        <Text style={styles.bodytext}>HIGH: {this.props.high}°C LOW: {this.props.low}°C</Text>
+      </View>
     );
   }
 }
-
-
 
 export default class MCWeatherApp extends React.Component {
   render() {
@@ -19,15 +22,11 @@ export default class MCWeatherApp extends React.Component {
 
     return (
         <View style={styles.container}>
-        <Image/>
-        <Greeting name='Ben'/>
-          <Text>Open up App.js to sart working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
-          
-          <Image style={{width: 193, height: 110}}
-          source={pic}/>
-
+          <View style={{flex:1, backgroundColor:'red' }}>
+            <Thermometer/>
+          </View>
+          <WeatherTextBlock style={{flex:1}} description='overcast clouds' temp="3" high="5" low="2"/>
+          <Text style={{flex:1}} >Shake your phone to open the developer menu.</Text>
         </View>
     );
   }
@@ -38,6 +37,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#99f',
     alignItems: 'flex-start',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
+  bodytext:{
+    color: 'white',
+  fontWeight: 'bold',
+  fontSize: 30,},
 });
