@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet,ImageBackground, Text, View, Image } from 'react-native';
 
 class Thermometer extends Component {
   constructor(props) {
@@ -8,31 +8,32 @@ class Thermometer extends Component {
 
     render() {
       return (
-        <View style={styles.container}>
-          <Image style={styles.face} source={require('./img/celsius.png')} resizeMode="cover" />
+        
+          <ImageBackground style={styles.face} source={require('./img/celsius.png')}>
           
-            <Image style={styles.needle} source={require('./img/needle.png')} resizeMode="cover"  />
+            <Image style={styles.needle} source={require('./img/needle.png')} />
          
-        </View>
+        </ImageBackground>
       );
     }
   }
 
 const styles = StyleSheet.create({
   container: {
-    
+    flex: 1,
+    backgroundColor:'red',
+    margin: 50,
+
   },
   face:{
-    alignSelf: 'center',
-    height: 150,
-    width: 150,
+    flex: 1,
+    width: undefined,
+    height: undefined,
   },
   needle:{
-    zIndex: 2,
-    alignSelf: 'center',
-    top: -150,
-    height: 150,
-    width: 150,
+    flex: 1,
+    width: undefined,
+    height: undefined,
   }
 });
 
