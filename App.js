@@ -5,9 +5,9 @@ import Thermometer from './Thermometer';
 class WeatherTextBlock extends Component {
   render() {
     return (
-      <View style={{flex:1, backgroundColor:'blue', flexDirection:'column' }}>
+      <View style={{flex:1, flexDirection:'column', margin:20 }}>
         <Text style={styles.regular}>{this.props.description}</Text>
-        <View style={{flexDirection: 'row', alignItems:'flex-start', backgroundColor:'red' }}>
+        <View style={{flexDirection: 'row', alignItems:'flex-start',}}>
           <Text style={[styles.regular, styles.bigTemp]}>{this.props.temp}</Text>
           <Text style={styles.regular}>°C</Text>
         </View>
@@ -25,13 +25,12 @@ export default class MCWeatherApp extends React.Component {
 
     return (
         <ImageBackground style={styles.container} source={pic}>
-          {/* <Image style={styles.backgroundImage} source={pic} resizeMode="cover"/> */}
-          <Text>Shake your phone to open the developer menu.</Text>
-          <View style={{ height:350, margin:20 }}>
+          <View style={{ height:350, margin:30 }}>
             <Thermometer/>
           </View>
           <WeatherTextBlock style={{flex:1}} description='Overcast clouds' temp="3" high="5" low="2"/> 
-          
+
+          <Text style={[styles.regular, styles.cityName]}>Bellevue</Text>
         </ImageBackground>
     );
   }
@@ -59,4 +58,9 @@ const styles = StyleSheet.create({
     fontSize: 20,},
   bigTemp:{
     fontSize: 50,},
+  cityName:{
+    fontSize:40,
+    margin: 20,
+    alignItems: 'center'
+  }
 });
