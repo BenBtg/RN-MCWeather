@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet,ImageBackground, Animated, Text, View, Image } from 'react-native';
+import { StyleSheet,ImageBackground, Animated, Text, View, Image, Easing } from 'react-native';
 
 class Thermometer extends Component {
   constructor(props) {
@@ -8,6 +8,7 @@ class Thermometer extends Component {
 
   state = {
     fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
+    spinValue: new Animated.Value(0),
   }
   
   componentDidMount() {
@@ -18,15 +19,30 @@ class Thermometer extends Component {
           duration: 10000,              // Make it take a while
         }
       ).start();                        // Starts the animation
+
+      Animated.timing(
+        this.state.spinValue,
+        {
+          toValue: 10,
+          duration: 10000,
+          easing: Easing.bounce
+        }
+      ).start();
+
+      const spin = this.state.spinValue.interpolate({
+        inputRange: [0, 60],
+        outputRange: ['-90deg', '90deg']
+      });
     }
 
     render() {
       let { fadeAnim } = this.state;
+      let { spinValue } = this.state;
 
       return (
           <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
           
-            <Animated.Image style={[styles.needle, {opacity:fadeAnim}]} source={require('./img/needle.png')} resizeMode="contain" />
+            <Animated.Image style={[styles.needle, {opacity:fadeAnim, transform:[{rotate: spinValue}]}]} source={require('./img/needle.png')} resizeMode="contain" />
          
         </ImageBackground>
       );
