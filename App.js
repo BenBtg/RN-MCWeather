@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput } from 'react-native';
 import Thermometer from './Thermometer';
 
 class WeatherTextBlock extends Component {
@@ -21,7 +21,7 @@ export default class MCWeatherApp extends React.Component {
   render() {
     let pic = {
       uri: 'https://i.pinimg.com/736x/24/69/87/2469874f2b5f78d5e6e812f31fc3c4bf--wallpaper-for-iphone-mobile-wallpaper.jpg'
-    };
+    }
 
     return (
         <ImageBackground style={styles.container} source={pic}>
@@ -29,6 +29,11 @@ export default class MCWeatherApp extends React.Component {
             <Thermometer/>
           </View>
           <WeatherTextBlock style={{flex:1}} description='Overcast clouds' temp="3" high="5" low="2"/> 
+
+          <TextInput
+            style={{height: 40, fontSize: 30,} }
+            placeholder="Type here to translate!"
+            onChangeText={(text) => this.setState({text})}/>
 
           <Text style={[styles.regular, styles.cityName]}>Bellevue</Text>
         </ImageBackground>
