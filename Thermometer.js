@@ -4,36 +4,42 @@ import { StyleSheet,ImageBackground, Animated, Text, View, Image, Easing } from 
 class Thermometer extends Component {
   constructor(props) {
     super(props)
-    }
 
-  state = {
-    spinValue: new Animated.Value(0),
-  }
-  
+    }
+      state = {
+        spinValue: new Animated.Value(0),
+      }
   componentDidMount() {
+
       Animated.timing(
         this.state.spinValue,
         {
-          toValue: 10,
-          duration: 10000,
+          toValue: 50,
+          duration: 5000,
           easing: Easing.bounce
         }
       ).start();
 
-      const spin = this.state.spinValue.interpolate({
-        inputRange: [0, 360],
-        outputRange: ['0deg', '360deg'],
-      });
+   
     }
 
     render() {
+      var spin = this.state.spinValue.interpolate({
+        inputRange: [-60, 60],
+        outputRange: ['-125deg', '125deg'],
+      });
+
       let { spinValue } = this.state;
+      console.log(spinValue)
+
+      console.log("BTGTesting!\n")
 
       return (
           <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
           
-            <Animated.Image style={[styles.needle, {transform:[{rotate: spinValue}]}]} source={require('./img/needle.png')} resizeMode="contain" />
-         
+            <Animated.Image style={[styles.needle, {transform:[{rotate: spin}]}]} source={require('./img/needle.png')} resizeMode="contain" />
+
+            <Animated.Text text='Testing'/> 
         </ImageBackground>
       );
     }
