@@ -20,6 +20,14 @@ class WeatherTextBlock extends Component {
 }
 
 export default class MCWeatherApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: '20'};
+    }
+
+  componentDidMount
+  
+
   render() {
     let pic = {
       uri: 'https://i.pinimg.com/736x/24/69/87/2469874f2b5f78d5e6e812f31fc3c4bf--wallpaper-for-iphone-mobile-wallpaper.jpg'
@@ -28,18 +36,25 @@ export default class MCWeatherApp extends React.Component {
     return (
         <ImageBackground style={styles.container} source={pic}>
           <View style={{ height:350, margin:30 }}>
-            <Thermometer/>
+            <Thermometer temp={this.state.text}/>
           </View>
           <WeatherTextBlock style={{flex:1}} description='Overcast clouds' temp="3" high="5" low="2"/> 
 
           <TextInput
             style={{height: 40, fontSize: 30,} }
             placeholder="Type here to translate!"
-            onChangeText={(text) => this.setState({text})}/>
+            onChangeText={(text) => this.getCurrentWeather({text})}/>
 
           <Text style={[styles.regular, styles.cityName]}>Bellevue</Text>
         </ImageBackground>
     );
+  }
+
+
+  getCurrentWeather(cityName)
+  {
+      console.log("Getting weather for : " + cityName + "\n");
+      
   }
 }
 
