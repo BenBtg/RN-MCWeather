@@ -1,3 +1,5 @@
+'use strict'; 
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TextInput } from 'react-native';
 import Thermometer from './Thermometer';

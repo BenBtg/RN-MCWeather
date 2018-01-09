@@ -8,7 +8,9 @@ class Thermometer extends Component {
     }
       state = {
         spinValue: new Animated.Value(0),
+        tempValue: 0,
       }
+
   componentDidMount() {
 
       Animated.timing(
@@ -20,7 +22,7 @@ class Thermometer extends Component {
         }
       ).start();
 
-   
+      this.state.spinValue.addListener(({value}) => this.setState({tempValue: value}));
     }
 
     render() {
@@ -28,18 +30,13 @@ class Thermometer extends Component {
         inputRange: [-60, 60],
         outputRange: ['-125deg', '125deg'],
       });
-
-      let { spinValue } = this.state;
-      console.log(spinValue)
-
-      console.log("BTGTesting!\n")
-
+  
       return (
           <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
           
             <Animated.Image style={[styles.needle, {transform:[{rotate: spin}]}]} source={require('./img/needle.png')} resizeMode="contain" />
 
-            <Animated.Text text='Testing'/> 
+            <Text style={{color:'white', fontSize:20}}>This : {this.state.tempValue}</Text>
         </ImageBackground>
       );
     }
