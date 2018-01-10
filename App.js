@@ -86,16 +86,6 @@ export default class MCWeatherApp extends React.Component {
                 high={this.state.weather.MaxTemperature} 
                 low={this.state.weather.MinTemperature} /> 
 
-          <TextInput
-            style={{height: 40, fontSize: 30,} }
-            placeholder="Type here to translate!"
-            onChangeText={(text) => this.getCurrentWeather(text, this.state.units)}/>
-
-{/* <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData.title}, {rowData.releaseYear}</Text>}
-        /> */}
-
           <Text style={[styles.regular, styles.cityName]}>{this.state.weather.Name}</Text>
         </ImageBackground>
     );

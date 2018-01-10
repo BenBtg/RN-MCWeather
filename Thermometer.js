@@ -46,19 +46,12 @@ class Thermometer extends Component {
       });
 
       return (
-          <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
-          
+        <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
             <Animated.Image style={[styles.needle, {transform:[{rotate: spin}]}]} source={require('./img/needle.png')} resizeMode="contain" />
-
-            <Text style={{color:'white', fontSize:20}}>This : {this.state.tempValue}</Text>
         </ImageBackground>
       );
     }
-
-
   }
-
-
 
 const styles = StyleSheet.create({
   face:{
