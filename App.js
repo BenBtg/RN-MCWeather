@@ -55,11 +55,14 @@ export default class MCWeatherApp extends React.Component {
     this.state = { 
       text: '20',
       isLoading: true,
-      weather: defaultWeather,};
+      weather: defaultWeather,
+      untis: 'metric'};
     }
 
-  componentDidMount() {
-    return fetch('https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Weather/WeatherByCity?city=London&unit=metric')
+  getCurrentWeather(cityName, units) {
+    console.log(cityName)
+
+    fetch('https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Weather/WeatherByCity?city='+cityName+'&unit='+ units)
     .then((response) => response.json())
     .then((responseJson) => {
       console.log(responseJson.CurrentTemperature);
@@ -73,6 +76,11 @@ export default class MCWeatherApp extends React.Component {
     .catch((error) => {
       console.error(error);
     });
+
+  }
+
+  componentDidMount() {
+    this.getCurrentWeather('Bristol', 'metric') 
   }
 
   render() {
@@ -102,14 +110,14 @@ export default class MCWeatherApp extends React.Component {
           <TextInput
             style={{height: 40, fontSize: 30,} }
             placeholder="Type here to translate!"
-            onChangeText={(text) => this.getCurrentWeather({text})}/>
+            onChangeText={(text) => this.getCurrentWeather(text, this.state.units)}/>
 
 {/* <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text>{rowData.title}, {rowData.releaseYear}</Text>}
         /> */}
 
-          <Text style={[styles.regular, styles.cityName]}>Bellevue</Text>
+          <Text style={[styles.regular, styles.cityName]}>{this.state.weather.Name}</Text>
         </ImageBackground>
     );
   }
