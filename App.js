@@ -4,26 +4,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView } from 'react-native';
 import Thermometer from './Thermometer';
 
-
-// function getCurrentWeather(cityName){
-//   let weatherUri = {uri: 'https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Weather/WeatherByCity?city=London&unit=imperial'};
-//   let backgroundUri = {uri: 'https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Image/BackgroundByCityAndWeather?city=Bellevue&weather=Clouds&height=1920'};
-//   console.log("Getting weather for : " + cityName + "\n");
- 
-  
-//     try {
-//       let response = await fetch(
-//         weatherUri.uri
-//       );
-//       let responseJson = await response.json();
-//       this.setState({isLoading: false});
-//       return responseJson;
-//     } catch (error) {
-//       console.error(error);
-//     }
-// }
-
-
 class WeatherTextBlock extends Component {
   render() {
     return (
@@ -91,7 +71,6 @@ export default class MCWeatherApp extends React.Component {
       return (
         <View style={{flex: 1, paddingTop: 20}}>
           <ActivityIndicator />
-          <Text>Working</Text>
         </View>
       );
     }
