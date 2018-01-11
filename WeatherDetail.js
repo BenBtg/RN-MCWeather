@@ -66,7 +66,8 @@ export default class MCWeatherApp extends Component {
         weather: responseJson,
       }, function() {
         // do something with new state
-        //this.getBackgroundImage(responseJson.Name, responseJson.Overview)
+        console.log(responseJson);
+        this.getBackgroundImage(responseJson.Name, responseJson.Overview)
       });
     })
     .catch((error) => {
@@ -83,8 +84,9 @@ export default class MCWeatherApp extends Component {
     .then((responseJson) => {
       this.setState({
         isLoading: false,
-        backgroundImage: responseJson,
+        backgroundImage: responseJson.ImageUrl,
       }, function() {
+        console.log(responseJson);
         // do something with new state
       });
     })
@@ -99,7 +101,7 @@ export default class MCWeatherApp extends Component {
 
   render() {
     let pic = {
-      uri: 'https://i.pinimg.com/736x/24/69/87/2469874f2b5f78d5e6e812f31fc3c4bf--wallpaper-for-iphone-mobile-wallpaper.jpg'
+      uri: this.state.backgroundImage
     }
     if (this.state.isLoading) {
       return (
