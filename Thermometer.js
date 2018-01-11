@@ -8,6 +8,7 @@ class Thermometer extends Component {
     this.state = {
       spinValue: new Animated.Value(0),
       tempValue: props.temp,
+      isMetric: props.isMetric,
     }
   }
   
@@ -27,6 +28,7 @@ class Thermometer extends Component {
     componentWillReceiveProps(nextProps) {
       this.setState({
         tempValue: nextProps.temp,
+        isMetric: nextProps.isMetric,
       });
 
       Animated.timing(
@@ -40,14 +42,27 @@ class Thermometer extends Component {
     }
 
     render() {
-      var spin = this.state.spinValue.interpolate({
-        inputRange: [-60, 60],
-        outputRange: ['-128deg', '128deg'],
-      });
+      if (this.state.isMetric)
+      {
+        var faceImage = require('./img/celsius.png');
+        var spin = this.state.spinValue.interpolate({
+          inputRange: [-60, 60],
+          outputRange: ['-128deg', '128deg'],
+        });
+      }
+      else
+      {
+        var faceImage = require('./img/fahrenheit.png');
+        var spin = this.state.spinValue.interpolate({
+          inputRange: [-120,120],
+          outputRange: ['-128deg', '128deg'],
+        });
+      }
 
       return (
-        <ImageBackground style={styles.face} source={require('./img/celsius.png')} resizeMode="contain">
-            <Animated.Image style={[styles.needle, {transform:[{rotate: spin}]}]} source={require('./img/needle.png')} resizeMode="contain" />
+        <ImageBackground style={styles.face} source={faceImage} resizeMode="contain">
+            <Animated.Image style={[styles.needle, {transform:[{rotate: spin}]}]} source={require('./img/needle.png')} 
+            resizeMode="contain" />
         </ImageBackground>
       );
     }

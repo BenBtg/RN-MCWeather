@@ -1,19 +1,33 @@
 'use strict'; 
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView, Switch } from 'react-native';
 import Thermometer from './Thermometer';
 
 class WeatherTextBlock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMetric: props.isMetric,
+    };
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isMetric: nextProps.isMetric,
+    });
+  }
+
   render() {
+    var unit = this.state.isMetric ? 'C' : 'F';
     return (
       <View style={{flex:1, flexDirection:'column', margin:20 }}>
         <Text style={styles.regular}>{this.props.description}</Text>
         <View style={{flexDirection: 'row', alignItems:'flex-start',}}>
           <Text style={[styles.regular, styles.bigTemp]}>{this.props.temp}</Text>
-          <Text style={styles.regular}>°C</Text>
+          <Text style={styles.regular}>°{unit}</Text>
         </View>
-        <Text style={styles.regular}>HIGH: {this.props.high}°C LOW: {this.props.low}°C</Text>
+        <Text style={styles.regular}>HIGH: {this.props.high}°{unit} LOW: {this.props.low}°{unit}</Text>
       </View>
     );
   }
@@ -36,7 +50,8 @@ export default class MCWeatherApp extends React.Component {
       text: '20',
       isLoading: true,
       weather: defaultWeather,
-      untis: 'metric'};
+      isMetric: true,
+      units: 'metric'};
     }
 
   getCurrentWeather(cityName, units) {
@@ -56,7 +71,6 @@ export default class MCWeatherApp extends React.Component {
     .catch((error) => {
       console.error(error);
     });
-
   }
 
   componentDidMount() {
@@ -78,13 +92,25 @@ export default class MCWeatherApp extends React.Component {
     return (
         <ImageBackground style={styles.container} source={pic}>
           <View style={{ height:350, margin:30 }}>
-            <Thermometer temp={this.state.text}/>
+            <Thermometer isMetric={this.state.isMetric} temp={this.state.weather.CurrentTemperature}/>
           </View>
           <WeatherTextBlock style={{flex:1}} 
+                isMetric={this.state.isMetric}
                 description={this.state.weather.Overview} 
                 temp={this.state.weather.CurrentTemperature} 
                 high={this.state.weather.MaxTemperature} 
                 low={this.state.weather.MinTemperature} /> 
+
+          <View style={{margin: 20}}>
+            <Text style={styles.regular}>Use Metric</Text>
+            <Switch  style={{marginTop:10}} onValueChange={ (value) => {
+                var unit = value ? 'metric':'imperial';
+                this.setState({ isMetric: value, units: unit });
+                this.getCurrentWeather(this.state.weather.Name, unit);
+              }
+            } 
+              value={ this.state.isMetric }/>
+          </View>
 
           <Text style={[styles.regular, styles.cityName]}>{this.state.weather.Name}</Text>
         </ImageBackground>
@@ -117,6 +143,8 @@ const styles = StyleSheet.create({
   cityName:{
     fontSize:40,
     margin: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    textAlign: 'center'
+    
   }
 });
