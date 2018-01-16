@@ -3,5 +3,7 @@
     "sdkVersion": "23.0.0",
     "slug": "MCWeather",
     "name": "MCWeather"
-  }
+  },
+  "name": "MCWeather",
+  "displayName": "MCWeather"
 }
