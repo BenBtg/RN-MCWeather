@@ -1,68 +1,78 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-'use strict';
+'use strict'; 
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Image,
-  Text,
-  View,
-  TabBarIOS,
-  NavigatorIOS,
-  TextInput,
-  TouchableHighlight,
-  ScrollView
-} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView, Switch } from 'react-native';
+import WeatherDetail from './WeatherDetail';
+import CityList from './CityList';
 
-
-class SearchPage extends Component<{}> {
-  render() {
-    return(
-    <ScrollView backgroundColor="green">
-        <Image
-          source={{uri: 'https://www.planwallpaper.com/static/images/1379596.jpg'}}
-          style={{width: 320, height:180}}
-        />
-        <Text>
-          On iOS, a React Native ScrollView uses a native UIScrollView.
-          On Android, it uses a native ScrollView.
-
-          On iOS, a React Native Image uses a native UIImageView.
-          On Android, it uses a native ImageView.
-
-          React Native wraps the fundamental native components, giving you
-          the performance of a native app, plus the clean design of React.
-        </Text>
-      </ScrollView>
-  );
+export default class MCWeatherApp extends React.Component {
+  constructor(props) {
+    super(props);
   }
-}
 
-export default class App extends Component<{}> {
+  componentDidMount() {
+  }
+
   render() {
     return (
-      <NavigatorIOS
-        style={{flex: 1}}
-        initialRoute={{
-          title: 'MC Weather Test',
-          component: SearchPage,
-          rightButtonTitle: 'Add',
-          onRightButtonPress: this.onRightButtonPress
-        }}/>
+      <RootNavigator/>
+        // <View style={styles.container}>
+        //   <CityList/>
+        //   {/* <WeatherDetail/> */}
+        // </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  description: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#656565',
-    marginTop: 20,
+const HomeScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+  </View>
+);
+
+const DetailsScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Details Screen</Text>
+  </View>
+);
+
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: CityList,
   },
+  Details: {
+    screen: WeatherDetail,
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    backgroundColor: 'transparent',
+    width: null,
+    height: null,
+  },
+  backgroundImage:{
+    flex:1,
+    position: 'absolute',
+
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+  regular:{
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,},
+  bigTemp:{
+    fontSize: 50,},
+  cityName:{
+    fontSize:40,
+    margin: 20,
+    alignItems: 'center',
+    textAlign: 'center'
+    
+  }
 });
