@@ -1,8 +1,10 @@
 'use strict'; 
 
 import React, { Component } from 'react';
+import { StackNavigator } from 'react-navigation';
 import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView, Switch } from 'react-native';
 import WeatherDetail from './WeatherDetail';
+import CityList from './CityList';
 
 export default class MCWeatherApp extends React.Component {
   constructor(props) {
@@ -14,12 +16,35 @@ export default class MCWeatherApp extends React.Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <WeatherDetail/>
-        </View>
+      <RootNavigator/>
+        // <View style={styles.container}>
+        //   <CityList/>
+        //   {/* <WeatherDetail/> */}
+        // </View>
     );
   }
 }
+
+const HomeScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+  </View>
+);
+
+const DetailsScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Details Screen</Text>
+  </View>
+);
+
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: CityList,
+  },
+  Details: {
+    screen: WeatherDetail,
+  },
+});
 
 const styles = StyleSheet.create({
   container: {

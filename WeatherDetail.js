@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView, Switch } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, Switch } from 'react-native';
 import Thermometer from './Thermometer';
 
 class WeatherTextBlock extends Component {
@@ -31,16 +31,23 @@ class WeatherTextBlock extends Component {
   }
 }
 
-export default class MCWeatherApp extends Component {
+export default class WeatherDetail extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `Weather in ${navigation.state.params.city}`,
+  });
+
   constructor(props) {
     super(props);
+    const { params } = this.props.navigation.state;
+    console.log("Construct Params: "+ params.city);
+    
     var defaultWeather = {
       "CurrentTemperature": 0,
       "Description": "",
       "Id": "",
       "MaxTemperature": 0,
       "MinTemperature": 0,
-      "Name": "",
+      "Name": params.city,
       "Overview": "Mist",
     }
 
@@ -52,10 +59,10 @@ export default class MCWeatherApp extends Component {
       units: 'metric',
       backgroundImage: 'https://i.pinimg.com/736x/24/69/87/2469874f2b5f78d5e6e812f31fc3c4bf--wallpaper-for-iphone-mobile-wallpaper.jpg',
     };
-    }
+  }
 
   getCurrentWeather(cityName, units) {
-    console.log(cityName)
+    console.log("GetWeather: " + cityName)
 
     fetch('https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Weather/WeatherByCity?city='+cityName+'&unit='+ units)
     .then((response) => response.json())
@@ -76,7 +83,7 @@ export default class MCWeatherApp extends Component {
   }
 
   getBackgroundImage(cityName, conditions) {
-    console.log(cityName)
+    console.log("getBackground: " + cityName)
     this.setState({isLoading:true});
 
     fetch('https://xvtsfapktnxnh4rzvvie.azurewebsites.net/api/functions/Image/BackgroundByCityAndWeather?city='+cityName+'&weather='+conditions+'&height=1920') 
@@ -96,7 +103,18 @@ export default class MCWeatherApp extends Component {
   }
 
   componentDidMount() {
-    this.getCurrentWeather('Bristol', 'metric') 
+    const { params } = this.props.navigation.state;
+    //console.log("Construct: "+ city);
+    console.log("Mount Params: "+ params.city);
+    if (params.city != undefined)
+    {
+      this.getCurrentWeather(params.city, 'metric') 
+    }
+    else
+    {
+      console.log("Undefined city")
+    }
+    
   }
 
   render() {
