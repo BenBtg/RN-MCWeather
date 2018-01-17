@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ListView, TouchableHighlight } from 'react-native';
+import {prompt} from 'react-native-prompt-android';
 
 export default class CityList extends Component {
     static navigationOptions = {
@@ -14,6 +15,19 @@ export default class CityList extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(['Bristol','London', 'Seattle'])
     };
+  }
+
+  componentDidMount(){
+    const params = {
+      right: (
+          <Button
+              onPress={() => { this.save(); }}
+              title={"Save"}
+          />
+      ),
+  };
+  
+  this.props.navigation.setParams(params);
   }
 
   pressRow(rowData)

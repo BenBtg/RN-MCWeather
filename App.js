@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
+import {Prompt} from 'react-native-prompt-android';
+
 import { StyleSheet, Text, View, Image, ImageBackground, TextInput, ActivityIndicator, ListView, Switch } from 'react-native';
 import WeatherDetail from './WeatherDetail';
 import CityList from './CityList';
