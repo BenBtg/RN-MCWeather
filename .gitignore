@@ -17,3 +17,9 @@ yarn-debug.log*
 yarn-error.log*
 
 \.vscode
+
+android/\.gradle/
+
+android/app/build/
+
+android/build/intermediates/

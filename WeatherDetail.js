@@ -142,7 +142,6 @@ export default class WeatherDetail extends Component {
                 low={this.state.weather.MinTemperature} /> 
 
           <View style={{margin: 20}}>
-            <Text style={styles.regular}>Use Metric</Text>
             <Switch  style={{marginTop:10}} onValueChange={ (value) => {
                 var unit = value ? 'metric':'imperial';
                 this.setState({ isMetric: value, units: unit });
